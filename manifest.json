@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+
+  "name": "Strava segment sorter",
+  "description": "Lets you sort your strava segments by your performance",
+  "version": "1.0",
+
+  "permissions": [
+    "https://strava.com"
+  ],
+  "browser_action": {
+    "default_icon": "strava.jpg",
+    "default_popup": "popup.html"
+  }
+}
