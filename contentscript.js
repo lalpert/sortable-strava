@@ -1,6 +1,6 @@
 baseUrl = "https://www.strava.com/api/v3/";
-token = "82bdd33b624ea3c910f4a565edcf70a503f48c02"
-access = "access_token=" + token;
+token = "redacted"
+token = access = "access_token=" + token;
 
 // Find elements with a specific data- attribute
 filterByData = function(element, attr) {
@@ -9,12 +9,12 @@ filterByData = function(element, attr) {
     );
 }
 
-// Convenience method to GET from strava API
-// Uses JSONP to avoid cross-origin issues
+// Convenience method to do a GET 
+// TODO: add auth headers
 get = function(url) {
     return jQuery.ajax({
         url: url,
-        dataType: 'jsonp',
+        dataType: 'json',
     });
 }
 
@@ -53,6 +53,8 @@ replacePower = function(row, rank, entryCount) {
 
 // Change the table headers to reflect new columns
 replaceHeaders = function() {
+    //t = $(".segments");
+    //console.log(t);
     t = jQuery(".segments");
     headers = jQuery(t).find('th');
     power = headers[5];
@@ -93,3 +95,6 @@ main = function() {
     row = rows[0]
     _.each(rows, replaceData);
 }
+
+console.log("Starting the script");
+main();

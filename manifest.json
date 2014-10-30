@@ -1,15 +1,23 @@
 {
   "manifest_version": 2,
 
-  "name": "Strava segment sorter",
-  "description": "Lets you sort your strava segments by your performance",
-  "version": "1.0",
+  "name": "Strava Segment Sorter",
+  "description": "Sort your Strava segments by your performance",
+  "version": "1.0.0",
 
   "permissions": [
-    "https://strava.com"
+    "https://www.strava.com/",
+    "http://www.strava.com/",
+    "activeTab"
   ],
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
   "browser_action": {
-    "default_icon": "strava.jpg",
-    "default_popup": "popup.html"
+    "default_title": "Make Strava page sortable",
+    "default_icon": "strava.png"
   }
 }
