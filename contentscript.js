@@ -1,8 +1,8 @@
 baseUrl = "https://www.strava.com/api/v3/";
-token = "redacted"
-token = access = "access_token=" + token;
+access = "access_token=" + api_token; // api_token is set in passwords.js
 
 pctBackString = "Percent slower than leader";
+
 
 // Find elements with a specific data- attribute
 filterByData = function(element, attr) {
@@ -208,7 +208,42 @@ replaceData = function(row) {
     });
 }
 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+function getParamFromUrl(paramName) {
+    var queryString = window.location.search.substring(1);
+    // Split into key/value pairs
+    var queries = queryString.split("&");
+    var params = {};
+    // Convert the array of strings into an object
+    for (var i = 0; i < queries.length; i++) {
+        temp = queries[i].split('=');
+        params[temp[0]] = temp[1];
+    }
+
+    return params[paramName];
+
+}
+
+authorizeUser = function() {
+    currentUrl = window.location.href;
+    authUrl = "https://www.strava.com/oauth/authorize?response_type=code&client_id=3244&redirect_uri=" + currentUrl;
+    window.location.href = authUrl;
+    getParamFromUrl("code")
+
+}
+
 main = function() {
+    // First of all, authorize the user...
+    // TODO: make this work
+    //authorizeUser();
+    //return;
+
     // Change the table headers to reflect what will soon be there
     replaceHeaders();
 
